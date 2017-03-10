@@ -2,6 +2,7 @@
 % Please edit documentation in R/spec.R
 \name{\%matches\%.data.frame}
 \alias{\%matches\%.data.frame}
+\alias{matches}
 \title{Check Whether Data Frame matches Spec}
 \usage{
 \method{\%matches\%}{data.frame}(x, y, ...)
@@ -14,10 +15,10 @@
 \item{...}{passed arguments}
 }
 \value{
-logical
+logical; TRUE if all checks above are enforceable.
 }
 \description{
-Checks whether data.frame matches spec.
+Checks whether data.frame matches spec.  Column names, count, and order are enforced. Encodings are enforced (all non-missing values must be valid codes).  Integer and numeric ranges are enforced. Values of \code{required} are parsed and evaluated in data context: Where TRUE, the corresponding data value for \code{column} cannot be missing.
 }
 \examples{
 data(drug)

@@ -386,11 +386,25 @@ specification.comment <- function(x,...)factor(x, levels=c(TRUE,FALSE), labels=c
 #' Make a Specification for a Data Frame
 #'
 #' Makes a specification for data.frame.  Creates a template based on the data.frame. Uses column names for labels where columns do not have a label attribute. Factors will be encoded. numerics will be rounded to \code{digits} and like integers will be expressed as ranges in \code{guide} column. Integers and character with less than or exactly \code{tol} unique values will be encoded.
+#'
 #' @param x object
 #' @param tol integer
 #' @param digits integer
 #' @param ... passed arguments
 #' @export
+#' @return spec data.frame with columns as follows.
+#' \describe{
+#'   \item{column}{Column name.}
+#'   \item{label}{A descriptive label. Save and edit as necessary using external tool.}
+#'   \item{guide}{A guide to interpretation.  NA for arbitrary character; range [low:high] for integer and numeric; an encoding e.g. //0/no//1/yes// for factor-like items ... save and edit factor labels as necessary using external tool.
+#'
+#'   For numeric ranges you can add text, such as units.  E.g. if default guide is '[0:100]' you can edit to give 'mg [0:100]'.  Or you can just substitute 'mg'.  \code{\link{guidetext}} extracts just the character portion, and \code{\link{matches}} enforces the numeric range.
+#'   }
+#'   \item{required}{An R expression that can be coerced to logical. TRUE means item cannot be NA.}
+#'   \item{comment}{Arbitrary comment, e.g. derivation of the item given by \code{column}.}
+#' }
+#' @aliases spec
+#' @seealso \code{link{read.spec}} \code{\link{write.spec}} \code{\link{as.csv.spec}} \code{\link{respecify.character}} \code{\link{write.spec}} \code{\link{matches}}
 #' @examples
 #' data(drug)
 #' file <- tempfile()
@@ -471,12 +485,14 @@ as.vector.spec <- function(x,mode='any')x$column
 
 #' Check Whether Data Frame matches Spec
 #'
-#' Checks whether data.frame matches spec.
+#' Checks whether data.frame matches spec.  Column names, count, and order are enforced. Encodings are enforced (all non-missing values must be valid codes).  Integer and numeric ranges are enforced. Values of \code{required} are parsed and evaluated in data context: Where TRUE, the corresponding data value for \code{column} cannot be missing.
+#'
 #' @param x spec
 #' @param y coerced to spec (spec object or filepath for spec file).
 #' @param ... passed arguments
-#' @return logical
+#' @return logical; TRUE if all checks above are enforceable.
 #' @export
+#' @aliases matches
 #' @examples
 #' data(drug)
 #' file <- tempfile()
