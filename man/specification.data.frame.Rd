@@ -18,3 +18,8 @@
 \description{
 Makes a specification for data.frame.  Creates a template based on the data.frame. Uses column names for labels where columns do not have a label attribute. Factors will be encoded. numerics will be rounded to \code{digits} and like integers will be expressed as ranges in \code{guide} column. Integers and character with less than or exactly \code{tol} unique values will be encoded.
 }
+\examples{
+data(drug)
+file <- tempfile()
+spec <- specification(drug, tol = 3)
+}

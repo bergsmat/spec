@@ -19,4 +19,9 @@ character
 \description{
 Extracts labels from specification label column.
 }
+\keyword{3))}
+\keyword{=}
+\keyword{data(drug)}
 \keyword{internal}
+\keyword{labels(specification(drug,}
+\keyword{tol}

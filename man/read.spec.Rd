@@ -19,3 +19,10 @@ spec
 \description{
 Reads specification from file.  If first line contains tab characters, assumes format is tab-delimited text.  Otherwise, assumes format is comma-separated variable (csv).
 }
+\examples{
+data(drug)
+file <- tempfile()
+spec <- specification(drug, tol = 3)
+write.spec(spec, file = file)
+read.spec(file)
+}

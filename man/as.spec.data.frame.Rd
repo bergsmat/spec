@@ -17,3 +17,7 @@ spec
 \description{
 Coerces to spec from data.frame already having basic properties.
 }
+\examples{
+data(drug)
+as.spec(specification(drug, tol = 3))
+}

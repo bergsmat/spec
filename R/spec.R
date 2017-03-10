@@ -68,6 +68,9 @@ guidetext <- function(x,...)UseMethod('guidetext')
 #' @return character
 #' @export
 #' @keywords internal
+#' @examples
+#' data(drug)
+#' guidetext(specification(drug, tol = 3)) # NA, must be supplied manually
 guidetext.spec <- function(x,column=x$column,...){
   x <- x[x$column %in% column,]
   pattern <- '((\\(|\\[) *([-+eE.0-9]*) *[,:] *([-+eE.0-9]*) *(\\)|\\])) *$'
@@ -88,8 +91,9 @@ guidetext.spec <- function(x,column=x$column,...){
 #' @param ... passed arguments
 #' @return list
 #' @export
+#' @import encode
 #' @keywords internal
-codes.spec <- function(x,column=x$column,...)codes(x$guide[x$column %in% column])
+codes.spec <- function(x,column=x$column,...)encode::codes(x$guide[x$column %in% column])
 
 #' Extract Decodes from Specification
 #'
@@ -111,6 +115,8 @@ decodes.spec <- function(x,column=x$column,...)decodes(x$guide[x$column %in% col
 #' @return character
 #' @export
 #' @keywords internal
+#' data(drug)
+#' labels(specification(drug, tol = 3))
 labels.spec <- function(object,column=object$column,...)object$label[object$column %in% column]
 
 #' Coerce to Spec
@@ -128,6 +134,9 @@ as.spec <- function(x, ...)UseMethod('as.spec')
 #' @param ... passed arguments
 #' @return spec
 #' @export
+#' @examples
+#' data(drug)
+#' as.spec(specification(drug, tol = 3))
 as.spec.data.frame <- function(x, ...){
   expected <- c('column','label','type','guide','required','comment')
   found <- names(x)
@@ -168,6 +177,12 @@ as.spec.data.frame <- function(x, ...){
 #' @importFrom utils write.table
 #' @return spec
 #' @export
+#' @examples
+#' data(drug)
+#' file <- tempfile()
+#' spec <- specification(drug, tol = 3)
+#' write.spec(spec, file = file)
+#' read.spec(file)
 read.spec <- function(x, clean = TRUE, ...){
   h <- readLines(x,n=1)
   if(any(grepl('\t',h))) {
@@ -190,6 +205,12 @@ read.spec <- function(x, clean = TRUE, ...){
 #' @export
 #' @import csv
 #' @import magrittr
+#' @examples
+#' data(drug)
+#' file <- tempfile()
+#' spec <- specification(drug, tol = 3)
+#' write.spec(spec, file = file)
+#' as.spec(file)
 as.spec.character <- function(x,...){
   stopifnot(length(x) == 1 && file.exists(x))
   y <- read.spec(x,...)
@@ -202,6 +223,12 @@ as.spec.character <- function(x,...){
 #' @param x spec
 #' @param file character filepath for storage location
 #' @param ... passed arguments
+#' @export
+#' @examples
+#' data(drug)
+#' file <- tempfile()
+#' spec <- specification(drug, tol = 3)
+#' write.spec(spec, file = file)
 write.spec <- function(x,file,...)write.table(x,file=file, row.names=FALSE,quote=FALSE,na='.',sep='\t',...)
 
 #' Make a Specification
@@ -211,6 +238,9 @@ write.spec <- function(x,file,...)write.table(x,file=file, row.names=FALSE,quote
 #' @param ... passed arguments
 #' @export
 #' @keywords internal
+#' @examples
+#' data(drug)
+#' specification(drug, tol = 3)
 specification <- function(x,...)UseMethod('specification')
 
 #' Make a Specification by Default
@@ -361,6 +391,10 @@ specification.comment <- function(x,...)factor(x, levels=c(TRUE,FALSE), labels=c
 #' @param digits integer
 #' @param ... passed arguments
 #' @export
+#' @examples
+#' data(drug)
+#' file <- tempfile()
+#' spec <- specification(drug, tol = 3)
 specification.data.frame <- function(x,tol=10,digits=20,...){
   x[] <- lapply(x,specification)
   y <- data.frame(
@@ -396,6 +430,12 @@ specification.data.frame <- function(x,tol=10,digits=20,...){
 #' @param ... passed arguments
 #' @export
 #' @keywords internal
+#' @examples
+#' data(drug)
+#' file <- tempfile()
+#' spec <- specification(drug, tol = 3)
+#' write.spec(spec, file = file)
+#' spec \%matches\% drug
 `%matches%.spec` <- function(x,y, ...) y %matches% x
 
 #' Check Whether Character matches y
@@ -405,13 +445,20 @@ specification.data.frame <- function(x,tol=10,digits=20,...){
 #' @param y object
 #' @param ... passed arguments
 #' @export
+#' @import csv
+#' @examples
+#' data(drug)
+#' file <- tempfile()
+#' spec <- specification(drug, tol = 3)
+#' library(csv)
+#' as.csv(drug, file)
+#' file \%matches\% spec
 `%matches%.character` <- function(x, y, ...){
   stopifnot(length(x) == 1)
   if(! file.exists(x))stop(x,' not found')
-  x <- read.csv(x,as.is=TRUE,na.strings=c('','.','NA'))
+  x <- as.csv(x)
   x %matches% y
 }
-#`%matches%.data.frame` <- function(x, y, ...)as.keyed(x) %matches% y
 
 #' Coerce to Vector from Spec.
 #'
@@ -431,8 +478,12 @@ as.vector.spec <- function(x,mode='any')x$column
 #' @return logical
 #' @export
 #' @examples
-#' specification(Theoph) \%matches\% Theoph
-`%matches%.data.frame` <- function(x, y, ...){ # was as.keyed method
+#' data(drug)
+#' file <- tempfile()
+#' spec <- specification(drug, tol = 3)
+#' write.spec(spec, file = file)
+#' drug \%matches\% spec
+`%matches%.data.frame` <- function(x, y, ...){
   y <- as.spec(y)
   x[] <- lapply(x,specification)
   unspecified <- setdiff(names(x), as.vector(y))
@@ -493,7 +544,7 @@ as.vector.spec <- function(x,mode='any')x$column
     }
     if(!allrequired)return(FALSE)
   }
-  pattern <- '((\\(|\\[) *([-+eE.0-9]*) *, *([-+eE.0-9]*) *(\\)|\\])) *$'
+  pattern <- '((\\(|\\[) *([-+eE.0-9]*) *[,:] *([-+eE.0-9]*) *(\\)|\\])) *$'
   y$lo <- extract(y$guide,pattern,group=3)
   y$hi <- extract(y$guide,pattern,group=4)
   y$lo <- as.numeric(y$lo)
@@ -533,7 +584,7 @@ respecify <- function(x,...)UseMethod('respecify')
 
 #' Respecify Character
 #'
-#' Respecify specification supplied as filepath. Updates numeric ranges.  Useful if these have changed and spec no longer matches.
+#' Respecify specification, supplied as filepath. Updates numeric ranges.  Useful if these have changed and spec no longer matches.
 #' @param x character filepath for a spec file (*.spec)
 #' @param data character filepath for a dataset
 #' @param file where to write the result (over-write source, by default)
@@ -554,7 +605,18 @@ respecify.character <- function(
 #' @param file where to write the result (default: do not write)
 #' @param ... passed arguments
 #' @export
-
+#' @examples
+#' data(drug)
+#' file <- tempfile()
+#' spec <- specification(drug,tol = 3)
+#' write.spec(spec, file = file)
+#' drug \%matches\% spec
+#' drug \%matches\% file
+#' max <- max(drug$DV,na.rm=TRUE)
+#' drug$DV[!is.na(drug$DV) & drug$DV == max] <- max + 1
+#' drug \%matches\% file
+#' respecify(file, drug)
+#' drug \%matches\% file
 respecify.spec <- function(x, data, file=NULL, ...){
   if (inherits(data,'character')) data %<>% as.csv(...)
   # get as many ranges as possible

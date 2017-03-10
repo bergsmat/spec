@@ -19,4 +19,8 @@ character
 \description{
 Extracts text from guide column of specification, ignoring number ranges if any.
 }
+\examples{
+data(drug)
+guidetext(specification(drug, tol = 3)) # NA, must be supplied manually
+}
 \keyword{internal}

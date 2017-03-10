@@ -16,3 +16,11 @@
 \description{
 Checks whether character matches y, treating x as filepath.
 }
+\examples{
+data(drug)
+file <- tempfile()
+spec <- specification(drug, tol = 3)
+library(csv)
+as.csv(drug, file)
+file \\\%matches\\\% spec
+}

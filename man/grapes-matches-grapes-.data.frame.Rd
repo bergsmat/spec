@@ -20,5 +20,9 @@ logical
 Checks whether data.frame matches spec.
 }
 \examples{
-specification(Theoph) \\\%matches\\\% Theoph
+data(drug)
+file <- tempfile()
+spec <- specification(drug, tol = 3)
+write.spec(spec, file = file)
+drug \\\%matches\\\% spec
 }

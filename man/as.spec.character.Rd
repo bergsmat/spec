@@ -17,3 +17,10 @@ spec
 \description{
 Coerces to specification from character (length-one filepath).
 }
+\examples{
+data(drug)
+file <- tempfile()
+spec <- specification(drug, tol = 3)
+write.spec(spec, file = file)
+as.spec(file)
+}

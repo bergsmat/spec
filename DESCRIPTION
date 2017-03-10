@@ -1,7 +1,7 @@
 Package: spec
 Type: Package
 Title: A Data Specification Format and Interface
-Version: 0.1.0
+Version: 0.1.1
 Author: Tim Bergsma
 Maintainer: Tim Bergsma <bergsmat@gmail.com>
 Description: Creates a data specification that describes the columns of a 
@@ -14,6 +14,7 @@ Imports:
  csv,
  magrittr,
  utils
+Depends: R (>= 2.10)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

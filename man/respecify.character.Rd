@@ -17,5 +17,5 @@
 \item{...}{passed arguments}
 }
 \description{
-Respecify specification supplied as filepath. Updates numeric ranges.  Useful if these have changed and spec no longer matches.
+Respecify specification, supplied as filepath. Updates numeric ranges.  Useful if these have changed and spec no longer matches.
 }

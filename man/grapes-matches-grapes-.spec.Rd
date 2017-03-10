@@ -16,4 +16,11 @@
 \description{
 Checks whether spec matches dataset by checking whether dataset matches spec.
 }
+\examples{
+data(drug)
+file <- tempfile()
+spec <- specification(drug, tol = 3)
+write.spec(spec, file = file)
+spec \\\%matches\\\% drug
+}
 \keyword{internal}

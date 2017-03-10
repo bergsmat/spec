@@ -18,3 +18,16 @@
 \description{
 Respecify specification. Updates numeric ranges.  Useful if these have changed and spec no longer matches.
 }
+\examples{
+data(drug)
+file <- tempfile()
+spec <- specification(drug,tol = 3)
+write.spec(spec, file = file)
+drug \\\%matches\\\% spec
+drug \\\%matches\\\% file
+max <- max(drug$DV,na.rm=TRUE)
+drug$DV[!is.na(drug$DV) & drug$DV == max] <- max + 1
+drug \\\%matches\\\% file
+respecify(file, drug)
+drug \\\%matches\\\% file
+}

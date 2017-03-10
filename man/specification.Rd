@@ -14,4 +14,8 @@ specification(x, ...)
 \description{
 Makes a specification.
 }
+\examples{
+data(drug)
+specification(drug, tol = 3)
+}
 \keyword{internal}

@@ -16,3 +16,9 @@ write.spec(x, file, ...)
 \description{
 Writes specification to storage in tab-delimited format.  Use as.csv() for CSV format.
 }
+\examples{
+data(drug)
+file <- tempfile()
+spec <- specification(drug, tol = 3)
+write.spec(spec, file = file)
+}
