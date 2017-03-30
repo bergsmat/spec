@@ -404,7 +404,7 @@ specification.comment <- function(x,...)factor(x, levels=c(TRUE,FALSE), labels=c
 #'   \item{comment}{Arbitrary comment, e.g. derivation of the item given by \code{column}.}
 #' }
 #' @aliases spec
-#' @seealso \code{link{read.spec}} \code{\link{write.spec}} \code{\link{as.csv.spec}} \code{\link{respecify.character}} \code{\link{write.spec}} \code{\link{matches}}
+#' @seealso \code{link{read.spec}} \code{\link{write.spec}} \code{\link{respecify.character}} \code{\link{write.spec}} \code{\link{matches}}
 #' @examples
 #' data(drug)
 #' file <- tempfile()
@@ -655,4 +655,35 @@ respecify.spec <- function(x, data, file=NULL, ...){
   }
 }
 
+#' Print Spec
+#'
+#' Prints spec. Specifically, shortens display of encoded items that are above limit.
+#' @param x spec
+#' @param limit number of characters to allow without intervention
+#' @param ... passed arguments
+#' @export
+#' @keywords internal
+#' @return character
+print.spec <- function(x, limit = 8, ...){
+  x[] <- lapply(x,shortOrNot, limit = limit, ...)
+  NextMethod()
+}
 
+shortOrNot <- function(x, limit = 8, ...){
+  if(!is.character(x)) return(x)
+  if(any(nchar(x[!is.na(x)]) > limit)){
+    if(any(encoded(x[!is.na(x)]))){
+      return(short(x, n = limit))
+    }
+  }
+  return(x)
+}
+
+short <- function(x, n){
+  y <- substr(x,1,n)
+  nchar <- nchar(x)
+  y <- paste0(y,ifelse(nchar > n,'...',''))
+  y <- as.character(y)
+  y[is.na(x)] <- NA_character_
+  y
+}

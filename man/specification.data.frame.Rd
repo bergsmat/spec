@@ -38,5 +38,5 @@ file <- tempfile()
 spec <- specification(drug, tol = 3)
 }
 \seealso{
-\code{link{read.spec}} \code{\link{write.spec}} \code{\link{as.csv.spec}} \code{\link{respecify.character}} \code{\link{write.spec}} \code{\link{matches}}
+\code{link{read.spec}} \code{\link{write.spec}} \code{\link{respecify.character}} \code{\link{write.spec}} \code{\link{matches}}
 }
