@@ -56,6 +56,7 @@ extract <- function(x, pattern, group = 0, invert=FALSE,...){
 #' @param ... passed arguments
 #' @export
 #' @keywords internal
+#' @seealso guidetext.spec
 guidetext <- function(x,...)UseMethod('guidetext')
 
 
@@ -537,6 +538,7 @@ as.vector.spec <- function(x,mode='any')x$column
   allgoodcodes <- TRUE
   for(col in z$column){
     codes <- codes(z$guide[z$column==col])
+    if(!length(codes)) next # empty encoding matches everything
     vals <- unique(x[,col])
     vals <- vals[!is.na(vals)]
     bad <- setdiff(vals, codes)
@@ -687,3 +689,62 @@ short <- function(x, n){
   y[is.na(x)] <- NA_character_
   y
 }
+
+
+#' Specify Something
+#'
+#' Specify something.
+#' @param x object
+#' @param ... passed arguments
+#' @export
+#' @keywords internal
+specify <- function(x,...)UseMethod('specify')
+
+#' Specify Character
+#'
+#' Attach specifics to a data.frame, supplied as csv filepath.
+#' @param x character filepath for a csv file
+#' @param file character filepath for a matching spec file (ignored if spec provided)
+#' @param spec a data specification (spec)
+#' @param ... passed arguments
+#' @export
+specify.character <- function(
+  x,
+  file = sub('csv$','spec',x),
+  spec = read.spec(file),
+  ...
+)specify(as.csv(x,...), spec = spec, ...)
+
+#' Specify Data Frame
+#'
+#' Attach specifics to a data.frame as attributes, including label and guide.
+#' @param x data.frame
+#' @param spec a data spec (or corresponding filepath) to use as source of attributes
+#' @param na.rm if TRUE, don't assign NA where encountered
+#' @param empty.rm if TRUE, don't assign empty string where encountered
+#' @param ... passed arguments
+#' @export
+#' @examples
+#' data(drug)
+#' spec <- specification(drug,tol = 3)
+#' drug \%matches\% spec
+#' drug <- specify(drug,spec)
+#' attributes(drug$HEIGHT)
+specify.data.frame <- function(x, spec, na.rm = TRUE, empty.rm = TRUE, ...){
+  if (inherits(spec,'character')) spec %<>% read.spec(...)
+  matches <- suppressWarnings(x %matches% spec)
+  if(!matches) warning('x does not match spec')
+  spec$guide <- ifelse(encoded(spec), spec$guide, guidetext(spec))
+  for(col in names(x)){
+    label <- spec$label[spec$column == col]
+    if(!is.na(label) || na.rm == FALSE) attr(x[[col]], 'label') <- label
+    guide <- spec$guide[spec$column == col]
+    if(!is.na(guide) || na.rm == FALSE){
+      if(nchar(guide) || empty.rm == FALSE){
+        attr(x[[col]], 'guide') <- guide
+      }
+    }
+  }
+  x
+}
+
