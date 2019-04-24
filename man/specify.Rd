@@ -14,4 +14,8 @@ specify(x, ...)
 \description{
 Specify something.
 }
+\seealso{
+Other specify: \code{\link{specify.character}},
+  \code{\link{specify.data.frame}}
+}
 \keyword{internal}

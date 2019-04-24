@@ -14,4 +14,8 @@ respecify(x, ...)
 \description{
 Respecify something.
 }
+\seealso{
+Other respecify: \code{\link{respecify.character}},
+  \code{\link{respecify.spec}}
+}
 \keyword{internal}

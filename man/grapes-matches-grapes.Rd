@@ -16,4 +16,9 @@ x \%matches\% y
 \description{
 Checks Whether x an y match.
 }
+\seealso{
+Other matches: \code{\link{\%matches\%.character}},
+  \code{\link{\%matches\%.data.frame}},
+  \code{\link{\%matches\%.spec}}
+}
 \keyword{internal}

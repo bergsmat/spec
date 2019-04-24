@@ -19,3 +19,7 @@
 \description{
 Respecify specification, supplied as filepath. Updates numeric ranges.  Useful if these have changed and spec no longer matches.
 }
+\seealso{
+Other respecify: \code{\link{respecify.spec}},
+  \code{\link{respecify}}
+}

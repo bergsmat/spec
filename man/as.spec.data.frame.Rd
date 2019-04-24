@@ -21,3 +21,8 @@ Coerces to spec from data.frame already having basic properties.
 data(drug)
 as.spec(specification(drug, tol = 3))
 }
+\seealso{
+Other as.spec: \code{\link{as.spec.character}},
+  \code{\link{as.spec}}, \code{\link{read.spec}},
+  \code{\link{write.spec}}
+}

@@ -14,3 +14,8 @@ as.spec(x, ...)
 \description{
 Coerces to class \code{spec}, a specification object
 }
+\seealso{
+Other as.spec: \code{\link{as.spec.character}},
+  \code{\link{as.spec.data.frame}},
+  \code{\link{read.spec}}, \code{\link{write.spec}}
+}

@@ -7,6 +7,7 @@
 #' @return logical with same length as \code{column} argument
 #' @import encode
 #' @export
+#' @family encoded
 #' @keywords internal
 encoded.spec <- function(x,column=x$column,...)encoded(x$guide[x$column %in% column])
 
@@ -56,7 +57,7 @@ extract <- function(x, pattern, group = 0, invert=FALSE,...){
 #' @param ... passed arguments
 #' @export
 #' @keywords internal
-#' @seealso guidetext.spec
+#' @family guidetext
 guidetext <- function(x,...)UseMethod('guidetext')
 
 
@@ -68,6 +69,7 @@ guidetext <- function(x,...)UseMethod('guidetext')
 #' @param ... passed arguments
 #' @return character
 #' @export
+#' @family guidetext
 #' @keywords internal
 #' @examples
 #' data(drug)
@@ -92,6 +94,7 @@ guidetext.spec <- function(x,column=x$column,...){
 #' @param ... passed arguments
 #' @return list
 #' @export
+#' @family codes
 #' @import encode
 #' @keywords internal
 codes.spec <- function(x,column=x$column,...)encode::codes(x$guide[x$column %in% column])
@@ -104,6 +107,7 @@ codes.spec <- function(x,column=x$column,...)encode::codes(x$guide[x$column %in%
 #' @param ... passed arguments
 #' @return list
 #' @export
+#' @family decodes
 #' @keywords internal
 decodes.spec <- function(x,column=x$column,...)decodes(x$guide[x$column %in% column])
 
@@ -115,6 +119,7 @@ decodes.spec <- function(x,column=x$column,...)decodes(x$guide[x$column %in% col
 #' @param ... passed arguments
 #' @return character
 #' @export
+#' @family labels
 #' @keywords internal
 #' data(drug)
 #' labels(specification(drug, tol = 3))
@@ -126,6 +131,7 @@ labels.spec <- function(object,column=object$column,...)object$label[object$colu
 #' @param x object
 #' @param ... passed arguments
 #' @export
+#' @family as.spec
 as.spec <- function(x, ...)UseMethod('as.spec')
 
 #' Coerce to Spec from Data Frame
@@ -135,6 +141,7 @@ as.spec <- function(x, ...)UseMethod('as.spec')
 #' @param ... passed arguments
 #' @return spec
 #' @export
+#' @family as.spec
 #' @examples
 #' data(drug)
 #' as.spec(specification(drug, tol = 3))
@@ -178,6 +185,7 @@ as.spec.data.frame <- function(x, ...){
 #' @importFrom utils write.table
 #' @return spec
 #' @export
+#' @family as.spec
 #' @examples
 #' data(drug)
 #' file <- tempfile()
@@ -204,6 +212,7 @@ read.spec <- function(x, clean = TRUE, ...){
 #' @param ... passed arguments
 #' @return spec
 #' @export
+#' @family as.spec
 #' @import csv
 #' @import magrittr
 #' @examples
@@ -225,6 +234,7 @@ as.spec.character <- function(x,...){
 #' @param file character filepath for storage location
 #' @param ... passed arguments
 #' @export
+#' @family as.spec
 #' @examples
 #' data(drug)
 #' file <- tempfile()
@@ -238,6 +248,7 @@ write.spec <- function(x,file,...)write.table(x,file=file, row.names=FALSE,quote
 #' @param x object
 #' @param ... passed arguments
 #' @export
+#' @family specification
 #' @keywords internal
 #' @examples
 #' data(drug)
@@ -250,6 +261,7 @@ specification <- function(x,...)UseMethod('specification')
 #' @param x object
 #' @param ... passed arguments
 #' @export
+#' @family specification
 #' @keywords internal
 specification.default <- function(x, ...)x
 
@@ -259,6 +271,7 @@ specification.default <- function(x, ...)x
 #' @param x object
 #' @param ... passed arguments
 #' @export
+#' @family specification
 #' @keywords internal
 specification.comment <- function(x,...)factor(x, levels=c(TRUE,FALSE), labels=c('C','.'))
 
@@ -268,6 +281,7 @@ specification.comment <- function(x,...)factor(x, levels=c(TRUE,FALSE), labels=c
 #' @param x object
 #' @param ... dots
 #' @export
+#' @family .guide
 #' @keywords internal
 .guide <- function(x,...)UseMethod('.guide')
 #' Make Default Guide
@@ -277,6 +291,7 @@ specification.comment <- function(x,...)factor(x, levels=c(TRUE,FALSE), labels=c
 #' @param tol integer
 #' @param ... dots
 #' @export
+#' @family .guide
 #' @keywords internal
 .guide.default <- function(x,tol=10,...){
   x <- as.character(x)
@@ -292,6 +307,7 @@ specification.comment <- function(x,...)factor(x, levels=c(TRUE,FALSE), labels=c
 #' @param digits integer
 #' @param ... dots
 #' @export
+#' @family .guide
 #' @keywords internal
 .guide.numeric <- function(x,digits=20,...){
   if(all(x == round(x),na.rm=TRUE)) .guide(as.integer(x),...)
@@ -304,6 +320,7 @@ specification.comment <- function(x,...)factor(x, levels=c(TRUE,FALSE), labels=c
 #' @param tol integer
 #' @param ... dots
 #' @export
+#' @family .guide
 #' @keywords internal
 .guide.integer <- function(x,tol=10,...){
   if(length(unique(x)) <= tol) .guide(as.factor(x),...)
@@ -321,6 +338,7 @@ specification.comment <- function(x,...)factor(x, levels=c(TRUE,FALSE), labels=c
 #'
 #' Makes type
 #' @export
+#' @family .type
 #' @keywords internal
 .type <- function(x,...)UseMethod('.type')
 #' Make Default Type
@@ -329,6 +347,7 @@ specification.comment <- function(x,...)factor(x, levels=c(TRUE,FALSE), labels=c
 #' @param x object
 #' @param ... dots
 #' @export
+#' @family .type
 #' @keywords internal
 .type.default <- function(x,...) 'character'
 #' Make Timepoint Type
@@ -337,6 +356,7 @@ specification.comment <- function(x,...)factor(x, levels=c(TRUE,FALSE), labels=c
 #' @param x object
 #' @param ... dots
 #' @export
+#' @family .type
 #' @keywords internal
 .type.timepoint <- function(x,...)'datetime'
 #' Make Numeric Type
@@ -345,6 +365,7 @@ specification.comment <- function(x,...)factor(x, levels=c(TRUE,FALSE), labels=c
 #' @param x object
 #' @param ... dots
 #' @export
+#' @family .type
 #' @keywords internal
 .type.numeric <- function(x,...)if(all(x==round(x),na.rm=TRUE)) 'integer' else 'numeric'
 #' Make Label
@@ -353,6 +374,7 @@ specification.comment <- function(x,...)factor(x, levels=c(TRUE,FALSE), labels=c
 #' @param x object
 #' @param ... dots
 #' @export
+#' @family .label
 #' @keywords internal
 .label <- function(x,...)UseMethod('.label')
 #' Make Default Label
@@ -361,6 +383,7 @@ specification.comment <- function(x,...)factor(x, levels=c(TRUE,FALSE), labels=c
 #' @param x object
 #' @param ... dots
 #' @export
+#' @family .label
 #' @keywords internal
 .label.default <- function(x,...){
   lab <- attr(x,which='label')
@@ -373,6 +396,7 @@ specification.comment <- function(x,...)factor(x, levels=c(TRUE,FALSE), labels=c
 #' @param x object
 #' @param ... dots
 #' @export
+#' @family .required
 #' @keywords internal
 .required <- function(x,...)UseMethod('.required')
 #' Make Default Required
@@ -381,6 +405,7 @@ specification.comment <- function(x,...)factor(x, levels=c(TRUE,FALSE), labels=c
 #' @param x object
 #' @param ... dots
 #' @export
+#' @family .required
 #' @keywords internal
 .required.default <- function(x,...)as.integer(all(!is.na(x)))
 
@@ -393,6 +418,7 @@ specification.comment <- function(x,...)factor(x, levels=c(TRUE,FALSE), labels=c
 #' @param digits integer
 #' @param ... passed arguments
 #' @export
+#' @family specification
 #' @return spec data.frame with columns as follows.
 #' \describe{
 #'   \item{column}{Column name.}
@@ -434,6 +460,7 @@ specification.data.frame <- function(x,tol=10,digits=20,...){
 #' @param y object
 #' @param ... passed arguments
 #' @export
+#' @family matches
 #' @keywords internal
 `%matches%` <- function(x, y)UseMethod("%matches%")
 
@@ -444,6 +471,7 @@ specification.data.frame <- function(x,tol=10,digits=20,...){
 #' @param y object
 #' @param ... passed arguments
 #' @export
+#' @family matches
 #' @keywords internal
 #' @examples
 #' data(drug)
@@ -460,6 +488,7 @@ specification.data.frame <- function(x,tol=10,digits=20,...){
 #' @param y object
 #' @param ... passed arguments
 #' @export
+#' @family matches
 #' @import csv
 #' @examples
 #' data(drug)
@@ -481,6 +510,7 @@ specification.data.frame <- function(x,tol=10,digits=20,...){
 #' @param x spec
 #' @param mode to match generic
 #' @export
+#' @family as.vector
 #' @keywords internal
 as.vector.spec <- function(x,mode='any')x$column
 
@@ -493,6 +523,7 @@ as.vector.spec <- function(x,mode='any')x$column
 #' @param ... passed arguments
 #' @return logical; TRUE if all checks above are enforceable.
 #' @export
+#' @family matches
 #' @aliases matches
 #' @examples
 #' data(drug)
@@ -667,6 +698,7 @@ respecify.spec <- function(x, data, file=NULL, ...){
 #' @param limit number of characters to allow without intervention
 #' @param ... passed arguments
 #' @export
+#' @family print
 #' @keywords internal
 #' @return character
 print.spec <- function(x, limit = 8, ...){

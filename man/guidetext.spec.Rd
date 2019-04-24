@@ -23,4 +23,7 @@ Extracts text from guide column of specification, ignoring number ranges if any.
 data(drug)
 guidetext(specification(drug, tol = 3)) # NA, must be supplied manually
 }
+\seealso{
+Other guidetext: \code{\link{guidetext}}
+}
 \keyword{internal}

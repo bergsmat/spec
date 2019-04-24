@@ -24,3 +24,7 @@ library(csv)
 as.csv(drug, file)
 file \\\%matches\\\% spec
 }
+\seealso{
+Other matches: \code{\link{\%matches\%.data.frame}},
+  \code{\link{\%matches\%.spec}}, \code{\link{\%matches\%}}
+}

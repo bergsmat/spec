@@ -27,3 +27,7 @@ drug \\\%matches\\\% spec
 drug <- specify(drug,spec)
 attributes(drug$HEIGHT)
 }
+\seealso{
+Other specify: \code{\link{specify.character}},
+  \code{\link{specify}}
+}

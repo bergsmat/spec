@@ -31,3 +31,7 @@ drug \\\%matches\\\% file
 respecify(file, drug)
 drug \\\%matches\\\% file
 }
+\seealso{
+Other respecify: \code{\link{respecify.character}},
+  \code{\link{respecify}}
+}

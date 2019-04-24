@@ -14,4 +14,9 @@
 \description{
 Makes a specification for a comment
 }
+\seealso{
+Other specification: \code{\link{specification.data.frame}},
+  \code{\link{specification.default}},
+  \code{\link{specification}}
+}
 \keyword{internal}

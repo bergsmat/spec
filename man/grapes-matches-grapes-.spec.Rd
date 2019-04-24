@@ -23,4 +23,9 @@ spec <- specification(drug, tol = 3)
 write.spec(spec, file = file)
 spec \\\%matches\\\% drug
 }
+\seealso{
+Other matches: \code{\link{\%matches\%.character}},
+  \code{\link{\%matches\%.data.frame}},
+  \code{\link{\%matches\%}}
+}
 \keyword{internal}

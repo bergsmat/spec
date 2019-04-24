@@ -27,3 +27,7 @@ spec <- specification(drug, tol = 3)
 write.spec(spec, file = file)
 drug \\\%matches\\\% spec
 }
+\seealso{
+Other matches: \code{\link{\%matches\%.character}},
+  \code{\link{\%matches\%.spec}}, \code{\link{\%matches\%}}
+}

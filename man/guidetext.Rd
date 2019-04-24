@@ -15,6 +15,6 @@ guidetext(x, ...)
 Extracts text from guide.
 }
 \seealso{
-guidetext.spec
+Other guidetext: \code{\link{guidetext.spec}}
 }
 \keyword{internal}

@@ -19,3 +19,7 @@
 \description{
 Attach specifics to a data.frame, supplied as csv filepath.
 }
+\seealso{
+Other specify: \code{\link{specify.data.frame}},
+  \code{\link{specify}}
+}
