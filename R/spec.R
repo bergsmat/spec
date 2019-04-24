@@ -598,6 +598,7 @@ as.vector.spec <- function(x,mode='any')x$column
 #' @param ... passed arguments
 #' @export
 #' @keywords internal
+#' @family respecify
 respecify <- function(x,...)UseMethod('respecify')
 
 #' Respecify Character
@@ -608,6 +609,7 @@ respecify <- function(x,...)UseMethod('respecify')
 #' @param file where to write the result (over-write source, by default)
 #' @param ... passed arguments
 #' @export
+#' @family respecify
 respecify.character <- function(
   x,
   data=sub('spec$','csv',x),
@@ -623,6 +625,7 @@ respecify.character <- function(
 #' @param file where to write the result (default: do not write)
 #' @param ... passed arguments
 #' @export
+#' @family respecify
 #' @examples
 #' data(drug)
 #' file <- tempfile()
@@ -698,6 +701,7 @@ short <- function(x, n){
 #' @param ... passed arguments
 #' @export
 #' @keywords internal
+#' @family specify
 specify <- function(x,...)UseMethod('specify')
 
 #' Specify Character
@@ -707,6 +711,7 @@ specify <- function(x,...)UseMethod('specify')
 #' @param file character filepath for a matching spec file (ignored if spec provided)
 #' @param spec a data specification (spec)
 #' @param ... passed arguments
+#' @family specify
 #' @export
 specify.character <- function(
   x,
@@ -724,6 +729,7 @@ specify.character <- function(
 #' @param empty.rm if TRUE, don't assign empty string where encountered
 #' @param ... passed arguments
 #' @export
+#' @family specify
 #' @examples
 #' data(drug)
 #' spec <- specification(drug,tol = 3)
