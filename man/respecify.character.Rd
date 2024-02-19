@@ -4,8 +4,7 @@
 \alias{respecify.character}
 \title{Respecify Character}
 \usage{
-\method{respecify}{character}(x, data = sub("spec$", "csv", x), file = x,
-  ...)
+\method{respecify}{character}(x, data = sub("spec$", "csv", x), file = x, ...)
 }
 \arguments{
 \item{x}{character filepath for a spec file (*.spec)}
@@ -20,6 +19,8 @@
 Respecify specification, supplied as filepath. Updates numeric ranges.  Useful if these have changed and spec no longer matches.
 }
 \seealso{
-Other respecify: \code{\link{respecify.spec}},
-  \code{\link{respecify}}
+Other respecify: 
+\code{\link{respecify.spec}()},
+\code{\link{respecify}()}
 }
+\concept{respecify}

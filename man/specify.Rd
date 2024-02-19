@@ -15,7 +15,9 @@ specify(x, ...)
 Specify something.
 }
 \seealso{
-Other specify: \code{\link{specify.character}},
-  \code{\link{specify.data.frame}}
+Other specify: 
+\code{\link{specify.character}()},
+\code{\link{specify.data.frame}()}
 }
+\concept{specify}
 \keyword{internal}

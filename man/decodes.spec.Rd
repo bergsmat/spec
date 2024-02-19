@@ -19,4 +19,5 @@ list
 \description{
 Extracts decodes from specification guide column.
 }
+\concept{decodes}
 \keyword{internal}

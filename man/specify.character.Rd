@@ -4,8 +4,7 @@
 \alias{specify.character}
 \title{Specify Character}
 \usage{
-\method{specify}{character}(x, file = sub("csv$", "spec", x),
-  spec = read.spec(file), ...)
+\method{specify}{character}(x, file = sub("csv$", "spec", x), spec = read.spec(file), ...)
 }
 \arguments{
 \item{x}{character filepath for a csv file}
@@ -20,6 +19,8 @@
 Attach specifics to a data.frame, supplied as csv filepath.
 }
 \seealso{
-Other specify: \code{\link{specify.data.frame}},
-  \code{\link{specify}}
+Other specify: 
+\code{\link{specify.data.frame}()},
+\code{\link{specify}()}
 }
+\concept{specify}

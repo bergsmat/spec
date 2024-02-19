@@ -15,8 +15,10 @@
 Makes a specification by default method, i.e. returns input unchanged.
 }
 \seealso{
-Other specification: \code{\link{specification.comment}},
-  \code{\link{specification.data.frame}},
-  \code{\link{specification}}
+Other specification: 
+\code{\link{specification.comment}()},
+\code{\link{specification.data.frame}()},
+\code{\link{specification}()}
 }
+\concept{specification}
 \keyword{internal}

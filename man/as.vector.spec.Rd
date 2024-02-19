@@ -14,4 +14,5 @@
 \description{
 Coerces to vector from spec by returning \code{column}.
 }
+\concept{as.vector}
 \keyword{internal}

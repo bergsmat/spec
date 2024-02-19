@@ -19,4 +19,5 @@ list
 \description{
 Extracts codes from specification guide column.
 }
+\concept{codes}
 \keyword{internal}

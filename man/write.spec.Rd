@@ -23,7 +23,10 @@ spec <- specification(drug, tol = 3)
 write.spec(spec, file = file)
 }
 \seealso{
-Other as.spec: \code{\link{as.spec.character}},
-  \code{\link{as.spec.data.frame}}, \code{\link{as.spec}},
-  \code{\link{read.spec}}
+Other as.spec: 
+\code{\link{as.spec.character}()},
+\code{\link{as.spec.data.frame}()},
+\code{\link{as.spec}()},
+\code{\link{read.spec}()}
 }
+\concept{as.spec}

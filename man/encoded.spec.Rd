@@ -19,4 +19,5 @@ logical with same length as \code{column} argument
 \description{
 Checks whether a specification is encoded with respect to the guide column.
 }
+\concept{encoded}
 \keyword{internal}

@@ -10,15 +10,15 @@ x \%matches\% y
 \item{x}{object}
 
 \item{y}{object}
-
-\item{...}{passed arguments}
 }
 \description{
 Checks Whether x an y match.
 }
 \seealso{
-Other matches: \code{\link{\%matches\%.character}},
-  \code{\link{\%matches\%.data.frame}},
-  \code{\link{\%matches\%.spec}}
+Other matches: 
+\code{\link{\%matches\%.character}()},
+\code{\link{\%matches\%.data.frame}()},
+\code{\link{\%matches\%.spec}()}
 }
+\concept{matches}
 \keyword{internal}

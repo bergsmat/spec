@@ -121,6 +121,7 @@ decodes.spec <- function(x,column=x$column,...)decodes(x$guide[x$column %in% col
 #' @export
 #' @family labels
 #' @keywords internal
+#' @examples
 #' data(drug)
 #' labels(specification(drug, tol = 3))
 labels.spec <- function(object,column=object$column,...)object$label[object$column %in% column]
@@ -326,6 +327,15 @@ specification.comment <- function(x,...)factor(x, levels=c(TRUE,FALSE), labels=c
   if(length(unique(x)) <= tol) .guide(as.factor(x),...)
   else paste0('[',min(x,na.rm=TRUE),':',max(x,na.rm=TRUE),']')
 }
+
+#' Make Factor Guide
+#'
+#' Makes Factor guide.
+#' @param x object
+#' @param ... dots
+#' @export
+#' @family .guide
+#' @keywords internal
 .guide.factor <- function(x,...){
   codes <- levels(x)
   encode(codes,labels=codes)
@@ -458,7 +468,6 @@ specification.data.frame <- function(x,tol=10,digits=20,...){
 #' Checks Whether x an y match.
 #' @param x object
 #' @param y object
-#' @param ... passed arguments
 #' @export
 #' @family matches
 #' @keywords internal
@@ -478,7 +487,7 @@ specification.data.frame <- function(x,tol=10,digits=20,...){
 #' file <- tempfile()
 #' spec <- specification(drug, tol = 3)
 #' write.spec(spec, file = file)
-#' spec \%matches\% drug
+#' spec %matches% drug
 `%matches%.spec` <- function(x,y, ...) y %matches% x
 
 #' Check Whether Character matches y
@@ -496,7 +505,7 @@ specification.data.frame <- function(x,tol=10,digits=20,...){
 #' spec <- specification(drug, tol = 3)
 #' library(csv)
 #' as.csv(drug, file)
-#' file \%matches\% spec
+#' file %matches% spec
 `%matches%.character` <- function(x, y, ...){
   stopifnot(length(x) == 1)
   if(! file.exists(x))stop(x,' not found')
@@ -530,7 +539,7 @@ as.vector.spec <- function(x,mode='any')x$column
 #' file <- tempfile()
 #' spec <- specification(drug, tol = 3)
 #' write.spec(spec, file = file)
-#' drug \%matches\% spec
+#' drug %matches% spec
 `%matches%.data.frame` <- function(x, y, ...){
   y <- as.spec(y)
   x[] <- lapply(x,specification)
@@ -662,13 +671,13 @@ respecify.character <- function(
 #' file <- tempfile()
 #' spec <- specification(drug,tol = 3)
 #' write.spec(spec, file = file)
-#' drug \%matches\% spec
-#' drug \%matches\% file
+#' drug %matches% spec
+#' drug %matches% file
 #' max <- max(drug$DV,na.rm=TRUE)
 #' drug$DV[!is.na(drug$DV) & drug$DV == max] <- max + 1
-#' drug \%matches\% file
+#' drug %matches% file
 #' respecify(file, drug)
-#' drug \%matches\% file
+#' drug %matches% file
 respecify.spec <- function(x, data, file=NULL, ...){
   if (inherits(data,'character')) data %<>% as.csv(...)
   # get as many ranges as possible
@@ -765,7 +774,7 @@ specify.character <- function(
 #' @examples
 #' data(drug)
 #' spec <- specification(drug,tol = 3)
-#' drug \%matches\% spec
+#' drug %matches% spec
 #' drug <- specify(drug,spec)
 #' attributes(drug$HEIGHT)
 specify.data.frame <- function(x, spec, na.rm = TRUE, empty.rm = TRUE, ...){

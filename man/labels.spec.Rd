@@ -19,9 +19,9 @@ character
 \description{
 Extracts labels from specification label column.
 }
-\keyword{3))}
-\keyword{=}
-\keyword{data(drug)}
+\examples{
+data(drug)
+labels(specification(drug, tol = 3))
+}
+\concept{labels}
 \keyword{internal}
-\keyword{labels(specification(drug,}
-\keyword{tol}

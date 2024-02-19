@@ -24,6 +24,8 @@ data(drug)
 guidetext(specification(drug, tol = 3)) # NA, must be supplied manually
 }
 \seealso{
-Other guidetext: \code{\link{guidetext}}
+Other guidetext: 
+\code{\link{guidetext}()}
 }
+\concept{guidetext}
 \keyword{internal}

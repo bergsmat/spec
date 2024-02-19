@@ -25,7 +25,10 @@ write.spec(spec, file = file)
 as.spec(file)
 }
 \seealso{
-Other as.spec: \code{\link{as.spec.data.frame}},
-  \code{\link{as.spec}}, \code{\link{read.spec}},
-  \code{\link{write.spec}}
+Other as.spec: 
+\code{\link{as.spec.data.frame}()},
+\code{\link{as.spec}()},
+\code{\link{read.spec}()},
+\code{\link{write.spec}()}
 }
+\concept{as.spec}

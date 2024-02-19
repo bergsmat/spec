@@ -19,8 +19,10 @@ data(drug)
 specification(drug, tol = 3)
 }
 \seealso{
-Other specification: \code{\link{specification.comment}},
-  \code{\link{specification.data.frame}},
-  \code{\link{specification.default}}
+Other specification: 
+\code{\link{specification.comment}()},
+\code{\link{specification.data.frame}()},
+\code{\link{specification.default}()}
 }
+\concept{specification}
 \keyword{internal}

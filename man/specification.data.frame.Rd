@@ -40,7 +40,9 @@ spec <- specification(drug, tol = 3)
 \seealso{
 \code{link{read.spec}} \code{\link{write.spec}} \code{\link{respecify.character}} \code{\link{write.spec}} \code{\link{matches}}
 
-Other specification: \code{\link{specification.comment}},
-  \code{\link{specification.default}},
-  \code{\link{specification}}
+Other specification: 
+\code{\link{specification.comment}()},
+\code{\link{specification.default}()},
+\code{\link{specification}()}
 }
+\concept{specification}

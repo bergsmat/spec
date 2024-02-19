@@ -15,7 +15,9 @@ respecify(x, ...)
 Respecify something.
 }
 \seealso{
-Other respecify: \code{\link{respecify.character}},
-  \code{\link{respecify.spec}}
+Other respecify: 
+\code{\link{respecify.character}()},
+\code{\link{respecify.spec}()}
 }
+\concept{respecify}
 \keyword{internal}

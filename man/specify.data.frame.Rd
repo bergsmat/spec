@@ -23,11 +23,13 @@ Attach specifics to a data.frame as attributes, including label and guide.
 \examples{
 data(drug)
 spec <- specification(drug,tol = 3)
-drug \\\%matches\\\% spec
+drug \%matches\% spec
 drug <- specify(drug,spec)
 attributes(drug$HEIGHT)
 }
 \seealso{
-Other specify: \code{\link{specify.character}},
-  \code{\link{specify}}
+Other specify: 
+\code{\link{specify.character}()},
+\code{\link{specify}()}
 }
+\concept{specify}

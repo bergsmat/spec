@@ -19,4 +19,5 @@ character
 \description{
 Prints spec. Specifically, shortens display of encoded items that are above limit.
 }
+\concept{print}
 \keyword{internal}

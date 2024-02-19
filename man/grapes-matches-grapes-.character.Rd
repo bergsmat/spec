@@ -22,9 +22,12 @@ file <- tempfile()
 spec <- specification(drug, tol = 3)
 library(csv)
 as.csv(drug, file)
-file \\\%matches\\\% spec
+file \%matches\% spec
 }
 \seealso{
-Other matches: \code{\link{\%matches\%.data.frame}},
-  \code{\link{\%matches\%.spec}}, \code{\link{\%matches\%}}
+Other matches: 
+\code{\link{\%matches\%.data.frame}()},
+\code{\link{\%matches\%.spec}()},
+\code{\link{\%matches\%}()}
 }
+\concept{matches}

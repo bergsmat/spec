@@ -21,11 +21,13 @@ data(drug)
 file <- tempfile()
 spec <- specification(drug, tol = 3)
 write.spec(spec, file = file)
-spec \\\%matches\\\% drug
+spec \%matches\% drug
 }
 \seealso{
-Other matches: \code{\link{\%matches\%.character}},
-  \code{\link{\%matches\%.data.frame}},
-  \code{\link{\%matches\%}}
+Other matches: 
+\code{\link{\%matches\%.character}()},
+\code{\link{\%matches\%.data.frame}()},
+\code{\link{\%matches\%}()}
 }
+\concept{matches}
 \keyword{internal}

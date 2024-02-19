@@ -4,7 +4,8 @@
 \name{drug}
 \alias{drug}
 \title{Simulated Pharmacometric Data}
-\format{A data frame with 600 rows and 24 variables:
+\format{
+A data frame with 600 rows and 24 variables:
 \describe{
   \item{C}{a comment flag, typically NA but 'C' for records that should be ignored}
   \item{ID}{integer subject identifier}
@@ -30,7 +31,8 @@
   \item{MDV}{missing dependent value, 0: not missing, 1: missing}
   \item{predose}{predose flag, 0: record not predose, 1: record is predose}
   \item{zerodv}{zero DV flag, 0, DV not zero, 1: DV is zero}
-}}
+}
+}
 \usage{
 drug
 }
